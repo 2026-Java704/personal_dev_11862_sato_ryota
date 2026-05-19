@@ -1,3 +1,24 @@
+/*
+個人開発
+
+
+①ユーザーとロール
+CREATE USER student WITH PASSWORD 'himitu';
+ もう作ってるはず
+CREATE DATABASE medicine_db OWNER student ENCODING 'UTF-8'; 
+ DBつくる　ロールをstudentに。
+ 
+ 
+ postgresの操作
+ ①spring.datasource.url=jdbc:postgresql:medicine_db
+ アプリケーションプロパティ
+ ②DB作成
+ create database medicine_db;
+③dbに接続
+\c medicine_db
+
+*/
+
 DROP TABLE IF EXISTS medicine;
 DROP TABLE IF EXISTS users;
 

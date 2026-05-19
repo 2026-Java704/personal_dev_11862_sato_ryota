@@ -1,32 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>ログイン</title>
-<style>
-	body{
-		margin: 0px;
-		text-align: center;
-	}
-	header{
-		background-color: aquamarine;
-	}
-	main{
-		background-color: azure;
-	}
-	footer{
-		background-color: aquamarine;
-	}
-</style>
+	<meta charset="UTF-8">
+	<title>ログイン</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	<header>
-		<h3>
-			服薬確認システム   一覧画面
-		</h3>
-		
-	</header>
-	
+	<header th:replace="~{header}"></header>
 	<main>
 		<div>
 			<h1>
@@ -60,16 +40,15 @@
 					
 				</table>
 			</form>
-			
-			<a href="/t">
-				一覧に戻る？
-			</a>
+			<br>
 		</div>
+		<form action="" method="get">
+			<button>追加</button>
+		</form>
+		<a href="/t">
+			一覧に戻る？
+		</a>
 	</main>
-	<footer>
-		<p>
-			footer
-		</p>
-	</footer>
+	<footer th:replace="~{footer}"></footer>
 </body>
 </html>

@@ -3,30 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
-<style>
-	body{
-		margin: 0px;
-		text-align: center;
-	}
-	header{
-		background-color: aquamarine;
-	}
-	main{
-		background-color: azure;
-	}
-	footer{
-		background-color: aquamarine;
-	}
-</style>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	<header>
-		<h3>
-			服薬確認システム   一覧画面
-		</h3>
-		
-	</header>
-	
+	<header th:replace="~{header}"></header>
 	<main>
 		<div>
 			<h1>
@@ -42,7 +22,7 @@
 					<th>No</th>
 					<th>薬の名前</th>
 					<th>服薬個数</th>
-					<th>服薬チェック</th>
+					<th>服薬したか</th>
 					<th>備考</th>
 					<th>更新</th>
 					<th>削除</th>
@@ -52,22 +32,42 @@
 					<td>name</td>
 					<td>3(具体的な個数をDBからもってくる)</td>
 					<td>
-						チェックボックスを挿入
+						<form action="" method="">
+							<input type="checkbox" name="check">チェック
+						</form>
 					</td>
 					<td>備考テキスト</td>
-					<td>更新</td>
-					<td>削除</td>
+					<td>
+						<form action="" method="get">
+							<input type="button" name="kousin" value="更新">
+						</form>
+					</td>
+					<td>
+						<form action="" method="get">
+							<input type="button" name="kousin" value="削除">
+						</form>
+					</td>
 				</tr>
 				<tr>
 					<td>2</td>
 					<td>name</td>
 					<td>3(具体的な個数をDBからもってくる)</td>
 					<td>
-						チェックボックスを挿入
+						<form action="" method="">
+							<input type="checkbox" name="check">チェック
+						</form>
 					</td>
 					<td>備考テキスト</td>
-					<td>更新</td>
-					<td>削除</td>
+					<td>
+						<form action="" method="get">
+							<input type="button" name="kousin" value="更新">
+						</form>
+					</td>
+					<td>
+						<form action="" method="get">
+							<input type="button" name="kousin" value="削除">
+						</form>
+					</td>
 				</tr>
 			</table>
 			<form action="" method="get">
@@ -77,10 +77,6 @@
 			</form>
 		</div>
 	</main>
-	<footer>
-		<p>
-			footer
-		</p>
-	</footer>
+	<footer th:replace="~{footer}"></footer>
 </body>
 </html>
