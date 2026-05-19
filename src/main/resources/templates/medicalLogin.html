@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<style>
+	body{
+		margin: 0px;
+		text-align: center;
+	}
+	header{
+		background-color: aquamarine;
+	}
+	main{
+		background-color: azure;
+	}
+	footer{
+		background-color: aquamarine;
+	}
+</style>
+</head>
+<body>
+	<header>
+		<h3>
+			服薬確認システム   ログイン画面
+		</h3>
+		
+	</header>
+	
+	<main>
+		<div>
+			<form action="/" method="post">
+				<input type="text" name="name">
+				<br>
+				<input type="password" name="password">
+				<button>
+					ログイン
+				</button>
+			</form>
+			<br>
+			<p>
+				空文字など、エラーメッセージ出力するところ
+			</p>
+		</div>
+		<div>
+			<form action="/" method="post">
+				<button>
+					新規登録
+				</button>
+			</form>
+		</div>
+	</main>
+	<footer>
+		<p>
+			footer
+		</p>
+	</footer>
+</body>
+</html>

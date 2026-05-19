@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<style>
+	body{
+		margin: 0px;
+		text-align: center;
+	}
+	header{
+		background-color: aquamarine;
+	}
+	main{
+		background-color: azure;
+	}
+	footer{
+		background-color: aquamarine;
+	}
+</style>
+</head>
+<body>
+	<header>
+		<h3>
+			服薬確認システム   一覧画面
+		</h3>
+		
+	</header>
+	
+	<main>
+		<div>
+			<h1>
+				服薬する薬の登録画面
+			</h1>
+			<p>
+				ログインユーザー名 : ユーザー名
+			</p>
+		</div>
+		<div>
+			<form>
+				<table border="1">
+					<tr>
+						<th>薬の名前</th>
+						<th>服薬個数</th>
+						<th>備考</th>
+					</tr>
+					<tr>
+						<td>
+							<input type="text">
+						</td>
+						<td>
+							<input type="number">
+						</td>
+						<td>
+							<textarea id="story" name="story" rows="5" cols="33">
+								それは暗い嵐の夜だった...
+							</textarea>
+						</td>
+					</tr>
+					
+				</table>
+			</form>
+			
+			<a href="/t">
+				一覧に戻る？
+			</a>
+		</div>
+	</main>
+	<footer>
+		<p>
+			footer
+		</p>
+	</footer>
+</body>
+</html>
