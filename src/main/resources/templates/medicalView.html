@@ -40,19 +40,21 @@
 					</td>
 					<td th:text="${medicine.text}"></td>
 					<td>
-						<form action="" method="get">
-							<input type="hidden" th:value="${medicine.Users.id}">
-							<input type="button" name="update" value="更新">
+						<form action="/updateView" method="get">
+							<input type="hidden" name="update" th:value="${medicine.id}">
+							<button>更新</button>
 						</form>
 					</td>
 					<td>
-						<form action="" method="get">
-							<input type="hidden" th:value="${medicine.Users.id}">
-							<input type="button" name="delete" value="削除">
+<!--						Users.-->
+						<form action="/deleteMedicine" name="delete" method = "post">
+							<input type="hidden" name="id" th:value="${medicine.id}">
+							<button>削除</button>
 						</form>
 					</td>
 				</tr>
 			</table>
+			<span th:text="${deleteMessege}"></span>
 			<form action="/insertMedicineView" method="get">
 				<button>
 					新しく薬を登録する

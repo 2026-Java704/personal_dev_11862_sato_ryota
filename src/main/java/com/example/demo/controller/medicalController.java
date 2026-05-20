@@ -53,11 +53,38 @@ public class medicalController {
 		return "insertMedicineView";
 	}
 
-	//ホーム画面 get
+	//ホーム画面の表示 get
 	@GetMapping("/medicalView") // GETリクエスト
-	public String medicalView() {
-		// ユーザーが薬を登録する画面へ遷移
+	public String medicalView(Model model) {
+		Users user = userRepository.findById(account.getUserId()).get();
+		List<Medicine> medicineList = new ArrayList<>();
+		medicineList = medicineRepository.findAll();
+
+		//データ件数分繰り返す
+		int i = 0; // カウンタ
+		List<Medicine> medicineList2 = new ArrayList<>();
+		for (Medicine m : medicineList) {
+			// ユーザIDと同じ薬データのみ保存する
+			if (m.getUsers().getId() == user.getId()) {
+				medicineList2.add(m);
+			}
+			i++;
+		}
+		// ユーザの服用薬一覧をタイムリーフに渡す
+		model.addAttribute("medicineList", medicineList2);
 		return "medicalView";
+	}
+
+	// 更新画面へ遷移する
+	@GetMapping("/updateView") // GETリクエスト
+	public String updateView(
+			@RequestParam Integer update,
+			Model model) {
+
+		// db検索して、更新する薬の情報をhtmlに渡して、値保持とコントローラに渡して更新できるようにする
+		Medicine medicine = medicineRepository.findById(update).get();
+		model.addAttribute("medicine", medicine);
+		return "updateView";
 	}
 
 	// 新規登録へ
@@ -163,6 +190,34 @@ public class medicalController {
 		model.addAttribute("messege", "登録しました。");
 
 		return "/insertMedicineView";
+	}
+
+	// deleteMedicine 薬の削除機能
+	@PostMapping("/deleteMedicine") // POSTリクエスト
+	public String deleteMedicine(
+			@RequestParam(defaultValue = "") Integer id, // usersのid。外部キー。
+			Model model) {
+		// 削除
+		medicineRepository.deleteById(id);
+		model.addAttribute("deleteMessege", "削除しました。");
+		// ホーム画面に戻る   get
+		return "medicalView";
+	}
+
+	// updateMedicine 薬の更新機能 処理部分
+	@PostMapping("/updateMedicine") // POSTリクエスト
+	public String updateMedicine(
+			@RequestParam(defaultValue = "") String name,
+			@RequestParam(defaultValue = "") Integer count, // usersのid。外部キー。
+			@RequestParam(defaultValue = "") String text,
+			Model model) {
+		account.getUserId();
+		// 更新処理
+
+		//		medicineRepository.save();
+		model.addAttribute("deleteMessege", "更新しました。");
+		// ホーム画面に戻る   get
+		return "medicalView";
 	}
 
 }
