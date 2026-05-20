@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Medicine;
+import com.example.demo.entity.Users;
 import com.example.demo.model.Account;
+import com.example.demo.repository.MedicineRepository;
 import com.example.demo.repository.UserRepository;
 
 @Controller
@@ -19,11 +23,15 @@ public class medicalController {
 	private final HttpSession session;
 	private final Account account;
 	private final UserRepository userRepository;
+	private final MedicineRepository medicineRepository;
 
-	public medicalController(HttpSession session, Account account, UserRepository userRepository) {
+	public medicalController(HttpSession session, Account account, UserRepository userRepository,
+			MedicineRepository medicineRepository) {
 		this.session = session;
 		this.account = account;
 		this.userRepository = userRepository;
+		this.medicineRepository = medicineRepository;
+
 	}
 
 	@GetMapping("/") // GETリクエスト
@@ -36,10 +44,20 @@ public class medicalController {
 
 	@GetMapping("/createUser") // GETリクエスト
 	public String createUser() {
-		// ユーザー新規登録画面を表示する
-		// セッション情報を全てクリアする
-		session.invalidate();
 		return "createUser";
+	}
+
+	@GetMapping("/insertMedicineView") // GETリクエスト
+	public String insertMedicine() {
+		// ユーザーが薬を登録する画面へ遷移
+		return "insertMedicineView";
+	}
+
+	//ホーム画面 get
+	@GetMapping("/medicalView") // GETリクエスト
+	public String medicalView() {
+		// ユーザーが薬を登録する画面へ遷移
+		return "medicalView";
 	}
 
 	// 新規登録へ
@@ -65,7 +83,13 @@ public class medicalController {
 		}
 		// 空文字チェックしか、してません
 
-		// errorをはかなかったときの登録処理を以下に記述
+		// ユーザー登録の処理
+		Users insertUser = new Users(name, password);
+		insertUser = userRepository.save(insertUser);
+		// sessionに登録。
+		account.setUserId(insertUser.getId()); //SQL取得用にIdを取得
+		account.setUserName(insertUser.getName());
+		model.addAttribute("insertUser", insertUser);
 
 		return "medicalView";
 	}
@@ -87,32 +111,58 @@ public class medicalController {
 		if (errorList.size() > 0) {
 			errorList.add("ログインできませんでした");
 			model.addAttribute("errorList", errorList);
-			// "/"が動作しない。なぜか
 			return "medicalLogin";
 		}
 		// 空文字チェックしか、してない
 		//ユーザー登録処理と、セッションに値を保持して画面へ表示させるようにする。セッションはできれば2時間程度にする
 
 		// ログインできた場合の処理を記述する
-		// userRepository.findByNameAndPassword(name, password)
 		if (userRepository.existsByNameAndPassword(name, password)) {
 			// ログインできたユーザー情報をセッションに保持
-			//			account.setUserId(1);
-			account.setUserName(name);
+			Users user = userRepository.findByNameAndPassword(name, password);
+			account.setUserId(user.getId()); //SQL取得用にIdを取得
+			account.setUserName(user.getName());
+			// 服薬一覧を表示するためのユーザーの使用する薬一覧を取得
+			// 全件取得して、iで条件分岐して削除処理をすれば、該当のものを順番にリスト代入できて、ほしい情報が取得できる
+			List<Medicine> medicineList = new ArrayList<>();
+			medicineList = medicineRepository.findAll();
 
+			//データ件数分繰り返す
+			int i = 0; // カウンタ
+			List<Medicine> medicineList2 = new ArrayList<>();
+			for (Medicine m : medicineList) {
+				// ユーザIDと同じ薬データのみ保存する
+				if (m.getUsers().getId() == user.getId()) {
+					medicineList2.add(m);
+				}
+				i++;
+			}
+			// ユーザの服用薬一覧をタイムリーフに渡す
+			model.addAttribute("medicineList", medicineList2);
 			return "medicalView";
 		}
 		// ログインできてないときは初期画面にとりあえずもっていく
 		return "medicalLogin";
 	}
 
-	@GetMapping("/t") // GETリクエスト
-	public String str() {
-		return "medicalView";
+	// 薬登録フォーム
+	@PostMapping("/insertMedicine") // POSTリクエスト
+	public String insert(
+			@RequestParam(defaultValue = "") String name,
+			@RequestParam(defaultValue = "") Integer count,
+			@RequestParam(defaultValue = "") String text,
+			Model model) {
+		// 登録処理
+		Users loginUser = userRepository.findById(account.getUserId()).get();
+		//
+		Medicine insertMedicine = new Medicine(name, text, count, false, false, false, false, new Date(1999, 10, 10),
+				loginUser);
+		insertMedicine = medicineRepository.save(insertMedicine);
+
+		model.addAttribute("insertMedicine", insertMedicine);
+		model.addAttribute("messege", "登録しました。");
+
+		return "/insertMedicineView";
 	}
 
-	@GetMapping("/a") // GETリクエスト
-	public String s() {
-		return "medicalInsert";
-	}
 }

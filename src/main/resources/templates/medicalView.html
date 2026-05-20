@@ -8,12 +8,16 @@
 <body>
 	<header th:replace="~{header}"></header>
 	<main>
-		<div>
+		<div class="title_header_1">
 			<h1>
 				服薬一覧
 			</h1>
+		</div>
+		<div  class="title_header_2">
+			アカウント名 : 
 			<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
 		</div>
+		
 		<div>
 			<table border="1">
 				<tr>
@@ -25,50 +29,31 @@
 					<th>更新</th>
 					<th>削除</th>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>name</td>
-					<td>3(具体的な個数をDBからもってくる)</td>
+				<tr  th:each="medicine : ${medicineList}">
+					<td th:text="${medicine.Users.id}"></td>
+					<td th:text="${medicine.name}"></td>
+					<td th:text="${medicine.count}"></td>
 					<td>
 						<form action="" method="">
 							<input type="checkbox" name="check">チェック
 						</form>
 					</td>
-					<td>備考テキスト</td>
+					<td th:text="${medicine.text}"></td>
 					<td>
 						<form action="" method="get">
-							<input type="button" name="kousin" value="更新">
+							<input type="hidden" th:value="${medicine.Users.id}">
+							<input type="button" name="update" value="更新">
 						</form>
 					</td>
 					<td>
 						<form action="" method="get">
-							<input type="button" name="kousin" value="削除">
-						</form>
-					</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>name</td>
-					<td>3(具体的な個数をDBからもってくる)</td>
-					<td>
-						<form action="" method="">
-							<input type="checkbox" name="check">チェック
-						</form>
-					</td>
-					<td>備考テキスト</td>
-					<td>
-						<form action="" method="get">
-							<input type="button" name="kousin" value="更新">
-						</form>
-					</td>
-					<td>
-						<form action="" method="get">
-							<input type="button" name="kousin" value="削除">
+							<input type="hidden" th:value="${medicine.Users.id}">
+							<input type="button" name="delete" value="削除">
 						</form>
 					</td>
 				</tr>
 			</table>
-			<form action="" method="get">
+			<form action="/insertMedicineView" method="get">
 				<button>
 					新しく薬を登録する
 				</button>

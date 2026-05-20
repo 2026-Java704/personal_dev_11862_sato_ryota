@@ -16,4 +16,9 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 
 	// 名前とパスワードで一致検索
 	boolean existsByNameAndPassword(String name, String password);
+
+	// 
+	Users findByNameAndPassword(String name, String password);
+
+	Users findByName(String name);
 }

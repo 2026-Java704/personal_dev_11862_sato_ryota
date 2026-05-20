@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,17 +7,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class Users {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
 	private Integer id;
 
-	@Column(name = "user_name")
 	private String name;
 
-	@Column(name = "user_password")
 	private String password;
 
 	public Users() {
@@ -26,13 +22,11 @@ public class Users {
 	}
 
 	public Users(String name, String password) {
-		super();
 		this.name = name;
 		this.password = password;
 	}
 
 	public Users(Integer id, String name, String password) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;

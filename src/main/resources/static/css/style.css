@@ -2,6 +2,7 @@
 
 body{
 	background-color: azure;
+	margin: 0;
 }
 header{
 	background-color: aquamarine;
@@ -14,4 +15,19 @@ footer{
 }
 .error{
 	color: red;
+}
+.title_header{
+	background-color: beige;
+/*	display: flex;*/
+/*	display: -webkit-flex;*/
+/*	justify-content: center;*/
+}
+.title_header1{
+	background-color: beige;
+/*	margin-right: 100px;*/
+}
+.title_header2{
+	background-color: beige;
+/*	margin-left: 50px;*/
+/*	margin-right: 20px;*/
 }
