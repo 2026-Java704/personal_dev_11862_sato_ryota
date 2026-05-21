@@ -31,3 +31,25 @@ footer{
 /*	margin-left: 50px;*/
 /*	margin-right: 20px;*/
 }
+
+/*  参考  https://proengineer.internous.co.jp/content/columnfeature/6493 */
+input[type=checkbox] { display: none; /* チェックボックスを非表示にする */ }
+input[type="checkbox"]:checked + label { 
+	background: black;/* マウス選択時の背景色を指定する */
+	background-color: cadetblue;/* マウス選択時の背景色を指定する */ 
+	color: #ffffff; /* マウス選択時のフォント色を指定する */
+}
+
+.label {
+	margin: 10px; /* ラベル外側の余白を指定する */
+	border: 2px solid black;/* ラベルの境界線を実線で指定する */ 
+	display: block;
+	width: auto; /* ラベルの横幅を指定する */
+	height: auto; /* ラベルの高さを指定する */
+	padding-left: 5px; /* ラベル内左側の余白を指定する */
+	padding-right: 5px; /* ラベル内右側の余白を指定する */
+	cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
+	color: black; /* フォントの色を指定 */
+	border-radius: 5px; /* 角丸を指定する */
+}
+.label:hover { background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */ }

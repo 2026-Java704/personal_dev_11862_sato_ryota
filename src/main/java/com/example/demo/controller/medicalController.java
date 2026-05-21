@@ -34,6 +34,11 @@ public class medicalController {
 
 	}
 
+	@GetMapping("/test") // GETリクエスト
+	public String test() {
+		return "test";
+	}
+
 	@GetMapping("/") // GETリクエスト
 	public String index() {
 		// ログイン画面を表示する
@@ -212,8 +217,7 @@ public class medicalController {
 			@RequestParam(required = false) boolean check,
 			Model model) {
 		// save()メソッドは主キー以外の項目に未入力をするとnull上書きしてしまいエラーの原因になってしまう
-		// checkBox機能　いまここ
-		// 既存データ取得 user
+		System.out.println("コンソール２２"); // 既存データ取得 user
 		Users user = userRepository.findById(account.getUserId()).get();
 
 		// まず薬テーブルの主キーで、検索取得してから、それを上書きし、save()に渡してあげる。これでnullが解決する

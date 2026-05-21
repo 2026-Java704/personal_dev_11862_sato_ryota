@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>ログイン</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
+<script src="script.js"></script>
 </head>
 <body>
 	<header th:replace="~{header}"></header>
@@ -17,7 +18,6 @@
 			アカウント名 : 
 			<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
 		</div>
-		
 		<div>
 			<table border="1">
 				<tr>
@@ -30,10 +30,11 @@
 				</tr>
 				<tr  th:each="medicine : ${medicineList}">
 					<td>
-						<form action="/check" method="post">
+						<form action="/check" id="autoForm" method="post">
 							<input type="hidden" name="id" th:value="${medicine.id}">
-							<input type="checkbox" name="check" th:checked="${medicine.check}">
-							<button>完了</button>
+<!--							onchange="document.getElementById('autoForm').submit()"-->
+							<input type="checkbox" th:id="|ap_id-${medicine.id}|" name="check" th:checked="${medicine.check}" onchange="submitParentForm(event)" />
+							<label th:for="|ap_id-${medicine.id}|" class="label">check</label>
 						</form>
 					</td>
 					<td th:text="${medicine.name}"></td>
