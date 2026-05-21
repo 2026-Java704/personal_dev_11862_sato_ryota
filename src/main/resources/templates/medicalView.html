@@ -21,26 +21,26 @@
 		<div>
 			<table border="1">
 				<tr>
-					<th>No</th>
+					<th>チェック</th>
 					<th>薬の名前</th>
 					<th>服薬個数</th>
-					<th>服薬したか</th>
 					<th>備考</th>
 					<th>更新</th>
 					<th>削除</th>
 				</tr>
 				<tr  th:each="medicine : ${medicineList}">
-					<td th:text="${medicine.Users.id}"></td>
-					<td th:text="${medicine.name}"></td>
-					<td th:text="${medicine.count}"></td>
 					<td>
-						<form action="" method="">
-							<input type="checkbox" name="check">チェック
+						<form action="/check" method="post">
+							<input type="hidden" name="id" th:value="${medicine.id}">
+							<input type="checkbox" name="check" th:checked="${medicine.check}">
+							<button>完了</button>
 						</form>
 					</td>
+					<td th:text="${medicine.name}"></td>
+					<td th:text="${medicine.count}"></td>
 					<td th:text="${medicine.text}"></td>
 					<td>
-						<form action="/updateView" method="get">
+						<form action="/updateView" method="post">
 							<input type="hidden" name="update" th:value="${medicine.id}">
 							<button>更新</button>
 						</form>

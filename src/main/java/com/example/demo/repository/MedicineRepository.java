@@ -8,4 +8,7 @@ import com.example.demo.entity.Medicine;
 
 public interface MedicineRepository extends JpaRepository<Medicine, Integer> {
 
+	// JPQLで外部キー（dept_id）を条件に指定する例
+	//	@Query("SELECT e FROM Employee e WHERE e.department.id = :deptId")
+	//	List<Employee> findEmployeesByDeptId(@Param("deptId") Long deptId);
 }

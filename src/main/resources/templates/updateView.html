@@ -18,23 +18,19 @@
 			<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
 		</div>
 		<div>
-			
-<!--			ここから-->
-			<span th:value="${medicine.id}" th:text="${medicine.id}"></span>
-			
-			
 			<form action="/updateMedicine" method="post">
 				<p>薬の名前</p>
+				<input type="hidden" name="id" th:value="${medicine.id}">
 				<p>
-					<input type="text" name="name">
+					<input type="text" name="name" th:value="${medicine.name}">
 				</p>
 				<p>服薬個数</p>
 				<p>
-					<input type="number" name="count">
+					<input type="number" name="count" th:value="${medicine.count}">
 				</p>
 				<p>備考</p>
 				<p>
-					<textarea name="text" rows="5" cols="40" placeholder="薬の説明や注意点を記入"></textarea>
+					<textarea name="text" rows="5" cols="40" th:text="${medicine.text}"></textarea>
 				</p>
 				<button>更新する</button>
 			</form>

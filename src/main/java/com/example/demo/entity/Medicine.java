@@ -63,9 +63,14 @@ public class Medicine {
 		this.users = users;
 	}
 
-	public Medicine(String name, String text, Integer count, boolean check, boolean morningCheck, boolean daytimeCheck,
-			boolean nightCheck, Date lastDate, Users users) {
-		super();
+	public Medicine(Integer id, boolean check, Users users) {
+		this.id = id;
+		this.check = check;
+		this.users = users;
+	}
+
+	public Medicine(String name, String text, Integer count, boolean check, boolean morningCheck,
+			boolean daytimeCheck, boolean nightCheck, Date lastDate, Users users) {
 		this.name = name;
 		this.text = text;
 		this.count = count;
@@ -73,6 +78,23 @@ public class Medicine {
 		this.morningCheck = morningCheck;
 		this.daytimeCheck = daytimeCheck;
 		this.nightCheck = nightCheck;
+		this.lastDate = lastDate;
+		this.users = users;
+	}
+
+	public Medicine(String name, String text, Integer count, Date lastDate, Users users) {
+		this.name = name;
+		this.text = text;
+		this.count = count;
+		this.lastDate = lastDate;
+		this.users = users;
+	}
+
+	public Medicine(Integer id, String name, String text, Integer count, Date lastDate, Users users) {
+		this.id = id;
+		this.name = name;
+		this.text = text;
+		this.count = count;
 		this.lastDate = lastDate;
 		this.users = users;
 	}

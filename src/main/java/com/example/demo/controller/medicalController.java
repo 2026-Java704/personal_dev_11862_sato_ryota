@@ -60,31 +60,9 @@ public class medicalController {
 		List<Medicine> medicineList = new ArrayList<>();
 		medicineList = medicineRepository.findAll();
 
-		//データ件数分繰り返す
-		int i = 0; // カウンタ
-		List<Medicine> medicineList2 = new ArrayList<>();
-		for (Medicine m : medicineList) {
-			// ユーザIDと同じ薬データのみ保存する
-			if (m.getUsers().getId() == user.getId()) {
-				medicineList2.add(m);
-			}
-			i++;
-		}
 		// ユーザの服用薬一覧をタイムリーフに渡す
-		model.addAttribute("medicineList", medicineList2);
+		model.addAttribute("medicineList", getMedicinesItem(user.getId()));
 		return "medicalView";
-	}
-
-	// 更新画面へ遷移する
-	@GetMapping("/updateView") // GETリクエスト
-	public String updateView(
-			@RequestParam Integer update,
-			Model model) {
-
-		// db検索して、更新する薬の情報をhtmlに渡して、値保持とコントローラに渡して更新できるようにする
-		Medicine medicine = medicineRepository.findById(update).get();
-		model.addAttribute("medicine", medicine);
-		return "updateView";
 	}
 
 	// 新規登録へ
@@ -150,22 +128,11 @@ public class medicalController {
 			account.setUserId(user.getId()); //SQL取得用にIdを取得
 			account.setUserName(user.getName());
 			// 服薬一覧を表示するためのユーザーの使用する薬一覧を取得
-			// 全件取得して、iで条件分岐して削除処理をすれば、該当のものを順番にリスト代入できて、ほしい情報が取得できる
 			List<Medicine> medicineList = new ArrayList<>();
 			medicineList = medicineRepository.findAll();
 
-			//データ件数分繰り返す
-			int i = 0; // カウンタ
-			List<Medicine> medicineList2 = new ArrayList<>();
-			for (Medicine m : medicineList) {
-				// ユーザIDと同じ薬データのみ保存する
-				if (m.getUsers().getId() == user.getId()) {
-					medicineList2.add(m);
-				}
-				i++;
-			}
 			// ユーザの服用薬一覧をタイムリーフに渡す
-			model.addAttribute("medicineList", medicineList2);
+			model.addAttribute("medicineList", getMedicinesItem(user.getId()));
 			return "medicalView";
 		}
 		// ログインできてないときは初期画面にとりあえずもっていく
@@ -204,20 +171,80 @@ public class medicalController {
 		return "medicalView";
 	}
 
+	// 更新画面へ遷移する
+	@PostMapping("/updateView") // リクエスト
+	public String updateView(
+			@RequestParam Integer update,
+			Model model) {
+
+		// db検索して、更新する薬の情報をhtmlに渡して、値保持とコントローラに渡して更新できるようにする
+		Medicine medicine = medicineRepository.findById(update).get();
+		model.addAttribute("medicine", medicine);
+		return "updateView";
+	}
+
 	// updateMedicine 薬の更新機能 処理部分
 	@PostMapping("/updateMedicine") // POSTリクエスト
 	public String updateMedicine(
+			@RequestParam(defaultValue = "") Integer id, //薬テーブルの個別id
 			@RequestParam(defaultValue = "") String name,
 			@RequestParam(defaultValue = "") Integer count, // usersのid。外部キー。
 			@RequestParam(defaultValue = "") String text,
 			Model model) {
-		account.getUserId();
-		// 更新処理
-
-		//		medicineRepository.save();
+		// 既存データ取得 user
+		Users user = userRepository.findById(account.getUserId()).get();
+		// 変更後データ代入
+		Medicine medicine = new Medicine(id, name, text, count, new Date(1999, 10, 10), user);
+		// update
+		medicineRepository.save(medicine);
 		model.addAttribute("deleteMessege", "更新しました。");
+
+		// ユーザの服用薬一覧をタイムリーフに渡す
+		model.addAttribute("medicineList", getMedicinesItem(user.getId()));
 		// ホーム画面に戻る   get
 		return "medicalView";
 	}
 
+	// checkBox機能。todo機能
+	@PostMapping("/check") // リクエスト
+	public String updateCheck(
+			@RequestParam int id,
+			@RequestParam(required = false) boolean check,
+			Model model) {
+		// save()メソッドは主キー以外の項目に未入力をするとnull上書きしてしまいエラーの原因になってしまう
+		// checkBox機能　いまここ
+		// 既存データ取得 user
+		Users user = userRepository.findById(account.getUserId()).get();
+
+		// まず薬テーブルの主キーで、検索取得してから、それを上書きし、save()に渡してあげる。これでnullが解決する
+		Medicine medicine = medicineRepository.findById(id).get();
+		// checkを変更
+		medicine.setCheck(check);
+
+		// update DBのboolean
+		medicineRepository.save(medicine);
+
+		// ユーザの服用薬一覧をタイムリーフに渡す
+		//		Users user = userRepository.findById(account.getUserId()).get();
+		model.addAttribute("medicineList", getMedicinesItem(user.getId()));
+		return "medicalView";
+	}
+
+	//くすり一覧取得メソッド
+	public List<Medicine> getMedicinesItem(int id) {
+		List<Medicine> medicineList = new ArrayList<>();
+		medicineList = medicineRepository.findAll();
+
+		//データ件数分繰り返す
+		int i = 0; // カウンタ
+		List<Medicine> medicineList2 = new ArrayList<>();
+		for (Medicine m : medicineList) {
+			// ユーザIDと同じ薬データのみ保存する
+			if (m.getUsers().getId() == id) {
+				medicineList2.add(m);
+			}
+			i++;
+		}
+		return medicineList2;
+	}
 }
