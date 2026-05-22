@@ -1,48 +1,109 @@
 @charset "UTF-8";
 
 body{
-	background-color: azure;
+	background-color: white;
 	margin: 0;
+	padding: 0;
+	height: 100vh;
+	font: caption;
 }
 header{
-	background-color: aquamarine;
+	background-color: #EEEEEE;
+	height: 12vh;
+}
+.header1{
+	text-align: center;
+	font-size: 25px;
+	margin: 0 0 0 0;
+}
+.header2{
+	text-align: right;
+	font-size: 18px;
+	margin: 0 0 0 0;
+}
+.login{
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	max-width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.formLogin{
+	width: 275px;
+}
+.formUser1{
+	width: 275px;
+	height: 20px;
+}
+.formUser2{
+	width: 275px;
+	height: 40px;
+}
+.formButton{
+	width: 250px;
+	height: 35px;
+	font-size: 18px;
+}
+.newForm{
+	justify-content: center;
 }
 main{
-	background-color: azure;
+	background-color: white;
+	height: 65vh;
 }
 footer{
-	background-color: aquamarine;
+	height: 15vh;
+	background-color: #EEEEEE;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 75px;
+	margin-bottom: 0 auto;
+}
+table{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 50px;
+	width: 100vh;
+	height: 50vh;
 }
 .error{
 	color: red;
 }
-.title_header{
-	background-color: beige;
-/*	display: flex;*/
-/*	display: -webkit-flex;*/
-/*	justify-content: center;*/
+.aTag{
+	text-decoration: none;
+	color: black;
 }
-.title_header1{
-	background-color: beige;
-/*	margin-right: 100px;*/
+.headerView{
+	text-align: center;
+	font-size: 20px;
 }
-.title_header2{
-	background-color: beige;
-/*	margin-left: 50px;*/
-/*	margin-right: 20px;*/
+.head1{
+	padding-left: 600px;
+	padding-right: 100px;
+}
+.head2{
+	font-size: 20px;
+}
+.tuika{
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 /*  参考  https://proengineer.internous.co.jp/content/columnfeature/6493 */
 input[type=checkbox] { display: none; /* チェックボックスを非表示にする */ }
 input[type="checkbox"]:checked + label { 
 	background: black;/* マウス選択時の背景色を指定する */
-	background-color: cadetblue;/* マウス選択時の背景色を指定する */ 
+	background-color: blue;/* マウス選択時の背景色を指定する */ 
 	color: #ffffff; /* マウス選択時のフォント色を指定する */
 }
 
 .label {
-	margin: 10px; /* ラベル外側の余白を指定する */
-	border: 2px solid black;/* ラベルの境界線を実線で指定する */ 
+	margin: 3px; /* ラベル外側の余白を指定する */
+	border: 1px solid black;/* ラベルの境界線を実線で指定する */ 
+	background-color: beige;
 	display: block;
 	width: auto; /* ラベルの横幅を指定する */
 	height: auto; /* ラベルの高さを指定する */

@@ -34,6 +34,7 @@ public class medicalController {
 
 	}
 
+	//test用
 	@GetMapping("/test") // GETリクエスト
 	public String test() {
 		return "test";
@@ -237,7 +238,8 @@ public class medicalController {
 	//くすり一覧取得メソッド
 	public List<Medicine> getMedicinesItem(int id) {
 		List<Medicine> medicineList = new ArrayList<>();
-		medicineList = medicineRepository.findAll();
+		//		medicineList = medicineRepository.findAll();
+		medicineList = medicineRepository.findByOrderByIdAsc();
 
 		//データ件数分繰り返す
 		int i = 0; // カウンタ
@@ -249,6 +251,8 @@ public class medicalController {
 			}
 			i++;
 		}
+		// ソートの処理を記述したい
+
 		return medicineList2;
 	}
 }

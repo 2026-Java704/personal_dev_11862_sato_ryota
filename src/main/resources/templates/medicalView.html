@@ -9,43 +9,45 @@
 <body>
 	<header th:replace="~{header}"></header>
 	<main>
-		<div class="title_header_1">
-			<h1>
-				服薬一覧
-			</h1>
+		<div class="login">
+			<p  class="formLogin">
+				<a class="aTag" href="/medicalView">服薬一覧</a>
+				<br>
+				アカウント名 : <span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
+				<br>
+				
+				
+				<span th:text="${deleteMessege}"></span>
+			</p>
 		</div>
-		<div  class="title_header_2">
-			アカウント名 : 
-			<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
-		</div>
-		<div>
 			<table border="1">
 				<tr>
 					<th>チェック</th>
 					<th>薬の名前</th>
 					<th>服薬個数</th>
+					<th>編集</th>
 					<th>備考</th>
-					<th>更新</th>
-					<th>削除</th>
+					<th>項目削除</th>
 				</tr>
 				<tr  th:each="medicine : ${medicineList}">
+					<td th:text="${medicine.name}"></td>
+					<td th:text="${medicine.count}"></td>
 					<td>
 						<form action="/check" id="autoForm" method="post">
 							<input type="hidden" name="id" th:value="${medicine.id}">
 <!--							onchange="document.getElementById('autoForm').submit()"-->
-							<input type="checkbox" th:id="|ap_id-${medicine.id}|" name="check" th:checked="${medicine.check}" onchange="submitParentForm(event)" />
+							<input type="checkbox" th:id="|ap_id-${medicine.id}|" name="check" th:checked="${medicine.check}" onchange="this.form.submit()" />
+<!--							onchange="submitParentForm(event)"-->
 							<label th:for="|ap_id-${medicine.id}|" class="label">check</label>
 						</form>
 					</td>
-					<td th:text="${medicine.name}"></td>
-					<td th:text="${medicine.count}"></td>
-					<td th:text="${medicine.text}"></td>
 					<td>
 						<form action="/updateView" method="post">
 							<input type="hidden" name="update" th:value="${medicine.id}">
-							<button>更新</button>
+							<button>選択</button>
 						</form>
 					</td>
+					<td th:text="${medicine.text}"></td>
 					<td>
 <!--						Users.-->
 						<form action="/deleteMedicine" name="delete" method = "post">
@@ -55,14 +57,14 @@
 					</td>
 				</tr>
 			</table>
-			<span th:text="${deleteMessege}"></span>
-			<form action="/insertMedicineView" method="get">
-				<button>
-					新しく薬を登録する
-				</button>
-			</form>
-		</div>
 	</main>
-	<footer th:replace="~{footer}"></footer>
+<!--	追加ボタンは編集画面に統合して消したい。-->
+	<form class="formB" action="/insertMedicineView" method="get">
+					くすりを追加する...<button>追加</button>
+				</form>
+	<footer th:replace="~{footer}">
+		
+	</footer>
+	
 </body>
 </html>

@@ -8,32 +8,33 @@
 </head>
 <body>
 	<header th:replace="~{header}"></header>
-	<div class="title_header">
-		<div class="title_header1">
-			ログイン画面
-		</div>
-		<div class="title_header2">
-			<form action="/createUser" method="get">
-				<button>
-					新規登録
-				</button>
-			</form>
-		</div>
-	</div>
-	
-	<div>
+	<div class="login">
 		<form action="/loginCheck" method="post">
-			<input type="text" name="name">
-			<br>
-			<input type="password" name="password">
-			<button>
-				ログイン
-			</button>
+			<p  class="formLogin">
+				ログイン画面
+			</p>
+			<p>
+				<div class="formUser1">
+					ユーザー名 : <input type="text" name="name">
+				</div>
+				<br>
+				<div class="formUser2">
+					パスワード : <input type="password" name="password">
+				</div>
+				<br>
+				<button class="formButton">ログイン</button>
+				<hr>
+				<br>
+				<form action="/createUser" method="get">
+					アカウントがない場合...<button>新規登録</button>
+				</form>
+				<!--   繰り返しエラーリストを出力する。  -->
+				<div th:replace="~{error}"></div>
+			</p>
 		</form>
 		<br>
 	</div>
-	<!--   繰り返しエラーリストを出力する。  -->
-	<div th:replace="~{error}"></div>
+	
 	</main>
 	<footer th:replace="~{footer}"></footer>
 </body>
