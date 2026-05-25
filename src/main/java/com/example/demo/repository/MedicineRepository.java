@@ -16,4 +16,7 @@ public interface MedicineRepository extends JpaRepository<Medicine, Integer> {
 
 	// 呼び出すだけで昇順（id順）に取得されるメソッド
 	List<Medicine> findByOrderByIdAsc();
+
+	// MedicineのUser_id外部キーで条件検索一括取得
+	List<Medicine> findByUsers_Id(Integer user_id);
 }

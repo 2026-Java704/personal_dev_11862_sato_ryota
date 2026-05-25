@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Medicine;
+import com.example.demo.entity.Medicine_add_history;
 import com.example.demo.entity.Users;
 import com.example.demo.model.Account;
+import com.example.demo.model.DailyTask;
 import com.example.demo.repository.MedicineRepository;
+import com.example.demo.repository.Medicine_add_historyRepository;
 import com.example.demo.repository.UserRepository;
 
 @Controller
@@ -24,13 +27,18 @@ public class medicalController {
 	private final Account account;
 	private final UserRepository userRepository;
 	private final MedicineRepository medicineRepository;
+	private final DailyTask dailyTask;
+	private final Medicine_add_historyRepository medicine_add_historyRepository;
 
 	public medicalController(HttpSession session, Account account, UserRepository userRepository,
-			MedicineRepository medicineRepository) {
+			MedicineRepository medicineRepository, DailyTask dailyTask,
+			Medicine_add_historyRepository medicine_add_historyRepository) {
 		this.session = session;
 		this.account = account;
 		this.userRepository = userRepository;
 		this.medicineRepository = medicineRepository;
+		this.dailyTask = dailyTask;
+		this.medicine_add_historyRepository = medicine_add_historyRepository;
 
 	}
 
@@ -87,6 +95,10 @@ public class medicalController {
 		if (password == null || password.length() == 0) {
 			errorList.add("パスワードを入力してください");
 		}
+		//名前重複登録禁止エラー
+		if (name.equals(userRepository.findByName(name).getName())) {
+			errorList.add("名前が重複してるので登録できません");
+		}
 		if (errorList.size() > 0) {
 			errorList.add("ユーザー登録が、できませんでした");
 			model.addAttribute("errorList", errorList);
@@ -113,6 +125,7 @@ public class medicalController {
 			Model model) {
 		// エラーチェックは空文字チェック、文字列一致チェック
 		List<String> errorList = new ArrayList<>();
+		// 空文字チェック
 		if (name == null || name.length() == 0) {
 			errorList.add("名前を入力してください");
 		}
@@ -124,7 +137,6 @@ public class medicalController {
 			model.addAttribute("errorList", errorList);
 			return "medicalLogin";
 		}
-		// 空文字チェックしか、してない
 		//ユーザー登録処理と、セッションに値を保持して画面へ表示させるようにする。セッションはできれば2時間程度にする
 
 		// ログインできた場合の処理を記述する
@@ -218,7 +230,6 @@ public class medicalController {
 			@RequestParam(required = false) boolean check,
 			Model model) {
 		// save()メソッドは主キー以外の項目に未入力をするとnull上書きしてしまいエラーの原因になってしまう
-		System.out.println("コンソール２２"); // 既存データ取得 user
 		Users user = userRepository.findById(account.getUserId()).get();
 
 		// まず薬テーブルの主キーで、検索取得してから、それを上書きし、save()に渡してあげる。これでnullが解決する
@@ -229,10 +240,23 @@ public class medicalController {
 		// update DBのboolean
 		medicineRepository.save(medicine);
 
+		// 履歴機能で追加処理記述を考えてる部分。
+
 		// ユーザの服用薬一覧をタイムリーフに渡す
 		//		Users user = userRepository.findById(account.getUserId()).get();
 		model.addAttribute("medicineList", getMedicinesItem(user.getId()));
 		return "medicalView";
+	}
+
+	@GetMapping("/historyMedicine") // リクエスト
+	public String history(Model model) {
+		// 薬履歴テーブルを、ユーザーidでユーザーの薬履歴を全部取得して表示すれば、完成。
+		//ログインユーザーの薬履歴テーブル全部取得
+		List<Medicine_add_history> list = medicine_add_historyRepository.findByUsers_Id(account.getUserId());
+		model.addAttribute("medicineHistory", list);
+
+		//履歴画面へ遷移
+		return "historyMedicine";
 	}
 
 	//くすり一覧取得メソッド

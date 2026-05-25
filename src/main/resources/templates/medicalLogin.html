@@ -5,6 +5,7 @@
 	<title>ログイン</title>
 <!--	cssファイルはstaticフォルダ直下におかないといけない。-->
 	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
 	<header th:replace="~{header}"></header>
@@ -23,18 +24,20 @@
 				</div>
 				<br>
 				<button class="formButton">ログイン</button>
-				<hr>
-				<br>
-				<form action="/createUser" method="get">
-					アカウントがない場合...<button>新規登録</button>
-				</form>
+				
+				
 				<!--   繰り返しエラーリストを出力する。  -->
 				<div th:replace="~{error}"></div>
 			</p>
 		</form>
 		<br>
+		<br>
+		
 	</div>
-	
+	<hr>
+	<form action="/createUser" method="get" style="text-align: center;">
+				アカウントがない場合...<button>新規登録</button>
+			</form>
 	</main>
 	<footer th:replace="~{footer}"></footer>
 </body>

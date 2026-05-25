@@ -1,96 +1,98 @@
 @charset "UTF-8";
 
-body{
-	background-color: white;
-	margin: 0;
-	padding: 0;
-	height: 100vh;
-	font: caption;
-}
-header{
-	background-color: #EEEEEE;
-	height: 12vh;
-}
-.header1{
-	text-align: center;
-	font-size: 25px;
-	margin: 0 0 0 0;
-}
-.header2{
-	text-align: right;
-	font-size: 18px;
-	margin: 0 0 0 0;
-}
-.login{
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	max-width: 700px;
-	margin-left: auto;
-	margin-right: auto;
-}
-.formLogin{
-	width: 275px;
-}
-.formUser1{
-	width: 275px;
-	height: 20px;
-}
-.formUser2{
-	width: 275px;
-	height: 40px;
-}
-.formButton{
-	width: 250px;
-	height: 35px;
-	font-size: 18px;
-}
-.newForm{
-	justify-content: center;
-}
-main{
-	background-color: white;
-	height: 65vh;
-}
-footer{
-	height: 15vh;
-	background-color: #EEEEEE;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 75px;
-	margin-bottom: 0 auto;
-}
-table{
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
-	margin-bottom: 50px;
-	width: 100vh;
-	height: 50vh;
-}
-.error{
-	color: red;
-}
-.aTag{
-	text-decoration: none;
-	color: black;
-}
-.headerView{
-	text-align: center;
-	font-size: 20px;
-}
-.head1{
-	padding-left: 600px;
-	padding-right: 100px;
-}
-.head2{
-	font-size: 20px;
-}
-.tuika{
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
+
+
+/*body{*/
+/*	background-color: white;*/
+/*	margin: 0;*/
+/*	padding: 0;*/
+/*	height: 100vh;*/
+/*	font: caption;*/
+/*}*/
+/*header{*/
+/*	background-color: #EEEEEE;*/
+/*	height: 12vh;*/
+/*}*/
+/*.header1{*/
+/*	text-align: center;*/
+/*	font-size: 25px;*/
+/*	margin: 0 0 0 0;*/
+/*}*/
+/*.header2{*/
+/*	text-align: right;*/
+/*	font-size: 18px;*/
+/*	margin: 0 0 0 0;*/
+/*}*/
+/*.login{*/
+/*	text-align: center;*/
+/*	display: flex;*/
+/*	justify-content: center;*/
+/*	max-width: 700px;*/
+/*	margin-left: auto;*/
+/*	margin-right: auto;*/
+/*}*/
+/*.formLogin{*/
+/*	width: 275px;*/
+/*}*/
+/*.formUser1{*/
+/*	width: 275px;*/
+/*	height: 20px;*/
+/*}*/
+/*.formUser2{*/
+/*	width: 275px;*/
+/*	height: 40px;*/
+/*}*/
+/*.formButton{*/
+/*	width: 250px;*/
+/*	height: 35px;*/
+/*	font-size: 18px;*/
+/*}*/
+/*.newForm{*/
+/*	justify-content: center;*/
+/*}*/
+/*main{*/
+/*	background-color: white;*/
+/*	height: 65vh;*/
+/*}*/
+/*footer{*/
+/*	height: 15vh;*/
+/*	background-color: #EEEEEE;*/
+/*	display: flex;*/
+/*	align-items: center;*/
+/*	justify-content: center;*/
+/*	margin-top: 75px;*/
+/*	margin-bottom: 0 auto;*/
+/*}*/
+/*table{*/
+/*	margin-left: auto;*/
+/*	margin-right: auto;*/
+/*	margin-top: 30px;*/
+/*	margin-bottom: 50px;*/
+/*	width: 100vh;*/
+/*	height: 50vh;*/
+/*}*/
+/*.error{*/
+/*	color: red;*/
+/*}*/
+/*.aTag{*/
+/*	text-decoration: none;*/
+/*	color: black;*/
+/*}*/
+/*.headerView{*/
+/*	text-align: center;*/
+/*	font-size: 20px;*/
+/*}*/
+/*.head1{*/
+/*	padding-left: 600px;*/
+/*	padding-right: 100px;*/
+/*}*/
+/*.head2{*/
+/*	font-size: 20px;*/
+/*}*/
+/*.tuika{*/
+/*	margin-top: 20px;*/
+/*	margin-bottom: 20px;*/
+/*}*/
 
 /*  参考  https://proengineer.internous.co.jp/content/columnfeature/6493 */
 input[type=checkbox] { display: none; /* チェックボックスを非表示にする */ }

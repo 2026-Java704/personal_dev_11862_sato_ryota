@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>更新</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
 	<header th:replace="~{header}"></header>
@@ -34,9 +35,18 @@
 				</p>
 				<button>更新する</button>
 			</form>
+			
 		</div>
+		
 		<div>
+			<hr>
+			<form action="/deleteMedicine" name="delete" method = "post">
+				<input type="hidden" name="id" th:value="${medicine.id}">
+				または...<button>くすりを登録から削除する</button>
+			</form>
 			<span th:text="${messege}"></span>
+			<br><hr>
+			
 			<a href="/medicalView">ホームに戻る</a>
 		</div>
 		
