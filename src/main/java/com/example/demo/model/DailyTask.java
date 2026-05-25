@@ -54,9 +54,9 @@ public class DailyTask {
 
 				//服薬済なら   日時+服薬記録+薬名前を記録
 				if (m.isCheck()) {
-					textStr = formattedDate + "服薬済" + m.getName();
+					textStr = formattedDate + " : " + m.getName() + " : 服薬済";
 				} else { // してなければ
-					textStr = formattedDate + "未服薬" + m.getName();
+					textStr = formattedDate + " : " + m.getName() + " : 未服薬";
 				}
 				Medicine_add_history history = new Medicine_add_history();
 				history.setAll(

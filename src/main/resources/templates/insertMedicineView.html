@@ -4,42 +4,44 @@
 <meta charset="UTF-8">
 <title>ログイン</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
 </head>
 <body>
 	<header th:replace="~{header}"></header>
-	<main>
-		<div class="title_header_1">
-			<h1>
-				薬を登録
-			</h1>
-		</div>
-		<div class="title_header_2">
-			アカウント名 : 
-			<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
-		</div>
-		<div>
-			<form action="/insertMedicine" method="post">
-				<p>薬の名前</p>
-				<p>
-					<input type="text" name="name">
-				</p>
-				<p>服薬個数</p>
-				<p>
-					<input type="number" name="count">
-				</p>
-				<p>備考</p>
-				<p>
-					<textarea name="text" rows="5" cols="40" placeholder="薬の説明や注意点を記入"></textarea>
-				</p>
-				<button>登録する</button>
-			</form>
-		</div>
-		<div>
-			<span th:text="${messege}"></span>
-			<a href="/medicalView">ホームに戻る</a>
-		</div>
-	</main>
-	<footer th:replace="~{footer}"></footer>
+	<div class="wrapper">
+		<main>
+			<div class="title_header_1">
+				<h1>
+					薬を登録
+				</h1>
+			</div>
+			<div class="title_header_2">
+				アカウント名 : 
+				<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
+			</div>
+			<div>
+				<form action="/insertMedicine" method="post">
+					<p>薬の名前</p>
+					<p>
+						<input type="text" name="name">
+					</p>
+					<p>服薬個数</p>
+					<p>
+						<input type="number" name="count">
+					</p>
+					<p>備考</p>
+					<p>
+						<textarea name="text" rows="5" cols="40" placeholder="薬の説明や注意点を記入"></textarea>
+					</p>
+					<button class="button_cs">登録する</button>
+				</form>
+			</div>
+			<div>
+				<span th:text="${messege}"></span>
+				<a href="/medicalView">ホームに戻る</a>
+			</div>
+		</main>
+		<footer th:replace="~{footer}"></footer>
+	</div>
 </body>
 </html>

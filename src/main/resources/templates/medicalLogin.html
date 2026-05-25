@@ -5,40 +5,43 @@
 	<title>ログイン</title>
 <!--	cssファイルはstaticフォルダ直下におかないといけない。-->
 	<link rel="stylesheet" th:href="@{/css/style.css}">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
+<!--	画面拡大okにする場合   レスポンシブ  -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
 </head>
 <body>
-	<header th:replace="~{header}"></header>
-	<div class="login">
-		<form action="/loginCheck" method="post">
-			<p  class="formLogin">
-				ログイン画面
-			</p>
-			<p>
-				<div class="formUser1">
-					ユーザー名 : <input type="text" name="name">
-				</div>
+	<header style="margin: 0 0 0 0; padding: 0 0 0 0; font-size: 2.2vw; white-space: nowrap; padding: 0 0 0 45%;">
+		お薬チェッくん
+	</header>
+		<div class="wrapper">
+			<main>
+				<div class="">
+					<form action="/loginCheck" method="post">
+						<p  class="">
+							ログイン画面
+						</p>
+						<p>
+						<div class="">
+							ユーザー名 : <input type="text" name="name">
+						</div>
+						<br>
+						<div class="">
+							パスワード : <input type="password" name="password">
+						</div>
+					<br>
+					<button class="button_cs">ログイン</button>
+					<!--   繰り返しエラーリストを出力する。  -->
+					<div th:replace="~{error}"></div>
+					</p>
+				</form>
 				<br>
-				<div class="formUser2">
-					パスワード : <input type="password" name="password">
-				</div>
 				<br>
-				<button class="formButton">ログイン</button>
-				
-				
-				<!--   繰り返しエラーリストを出力する。  -->
-				<div th:replace="~{error}"></div>
-			</p>
-		</form>
-		<br>
-		<br>
-		
-	</div>
-	<hr>
-	<form action="/createUser" method="get" style="text-align: center;">
-				アカウントがない場合...<button>新規登録</button>
+				</div>
+			<hr>
+			<form action="/createUser" method="get" style="text-align: center;">
+				アカウントがない場合...<button  class="button_cs">新規登録</button>
 			</form>
-	</main>
-	<footer th:replace="~{footer}"></footer>
+		</main>
+		<footer th:replace="~{footer}"></footer>
+	</div>
 </body>
 </html>

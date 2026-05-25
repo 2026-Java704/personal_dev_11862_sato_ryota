@@ -1,98 +1,126 @@
 @charset "UTF-8";
 
+/* PC用のCSSはメディアクエリの外に記述する */
+body{
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	background-color: #FFFFFF;
+}
+header{
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	display: flex;
+	align-items: center;
+	
+	background-color: #99FF99;
+}
+p{
+	margin: 0 0 0 0;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 画面の高さいっぱいに広げる */
+}
+main {
+    flex: 1; /* 残りの高さをメインコンテンツで埋める */
+}
+.header_title{
+	margin: 0 0 0 0;
+	padding: 0 0 0 48%;
+	font-size: 2.2vw;
+	white-space: nowrap; /* 折り返しを禁止する */
+}
+.header_logout{
+	margin: 0 0 0 0;
+	padding: 0 0 0 30%;
+	font-size: 1vw;
+	white-space: nowrap; /* 折り返しを禁止する */
+}
+.home_title{
+	margin: 0 0 0 0;
+	padding: 0 0 0 50%;
+	font-size: 1.8vw;
+	white-space: nowrap;
+	
+}
+.account_title{
+	margin-left: 60%;
+	margin-right: 0;
+	white-space: nowrap;
+}
+
+.table_view{
+	background-color: #EEEEEE;
+	width: 100%; /* 親要素（画面）に対して100%の幅にする */
+	table-layout: fixed; /* セル幅を均等、または指定した割合で固定する */
+	text-overflow: ellipsis; /* はみ出た部分を「…」で省略する場合 */
+	border-collapse: collapse; /* 枠線を1本にまとめる */
+}
+.table_title{
+	background-color: #99FF99;
+	animation: bg-color 3s infinite;
+}
 
 
-/*body{*/
-/*	background-color: white;*/
-/*	margin: 0;*/
-/*	padding: 0;*/
-/*	height: 100vh;*/
-/*	font: caption;*/
-/*}*/
-/*header{*/
-/*	background-color: #EEEEEE;*/
-/*	height: 12vh;*/
-/*}*/
-/*.header1{*/
-/*	text-align: center;*/
-/*	font-size: 25px;*/
-/*	margin: 0 0 0 0;*/
-/*}*/
-/*.header2{*/
-/*	text-align: right;*/
-/*	font-size: 18px;*/
-/*	margin: 0 0 0 0;*/
-/*}*/
-/*.login{*/
-/*	text-align: center;*/
-/*	display: flex;*/
-/*	justify-content: center;*/
-/*	max-width: 700px;*/
-/*	margin-left: auto;*/
-/*	margin-right: auto;*/
-/*}*/
-/*.formLogin{*/
-/*	width: 275px;*/
-/*}*/
-/*.formUser1{*/
-/*	width: 275px;*/
-/*	height: 20px;*/
-/*}*/
-/*.formUser2{*/
-/*	width: 275px;*/
-/*	height: 40px;*/
-/*}*/
-/*.formButton{*/
-/*	width: 250px;*/
-/*	height: 35px;*/
-/*	font-size: 18px;*/
-/*}*/
-/*.newForm{*/
-/*	justify-content: center;*/
-/*}*/
-/*main{*/
-/*	background-color: white;*/
-/*	height: 65vh;*/
-/*}*/
-/*footer{*/
-/*	height: 15vh;*/
-/*	background-color: #EEEEEE;*/
-/*	display: flex;*/
-/*	align-items: center;*/
-/*	justify-content: center;*/
-/*	margin-top: 75px;*/
-/*	margin-bottom: 0 auto;*/
-/*}*/
-/*table{*/
-/*	margin-left: auto;*/
-/*	margin-right: auto;*/
-/*	margin-top: 30px;*/
-/*	margin-bottom: 50px;*/
-/*	width: 100vh;*/
-/*	height: 50vh;*/
-/*}*/
-/*.error{*/
-/*	color: red;*/
-/*}*/
-/*.aTag{*/
-/*	text-decoration: none;*/
-/*	color: black;*/
-/*}*/
-/*.headerView{*/
-/*	text-align: center;*/
-/*	font-size: 20px;*/
-/*}*/
-/*.head1{*/
-/*	padding-left: 600px;*/
-/*	padding-right: 100px;*/
-/*}*/
-/*.head2{*/
-/*	font-size: 20px;*/
-/*}*/
-/*.tuika{*/
-/*	margin-top: 20px;*/
-/*	margin-bottom: 20px;*/
-/*}*/
+th, td {
+  text-align: center; /* 中央寄せ（left, right も指定可） */
+}
+.th_tag{
+	width: 15%;
+	height: 50px;
+	white-space: nowrap;
+	border: 1px solid #000000;
+}
+.th_check{
+	width: 8%;
+	white-space: nowrap;
+	text-overflow: ellipsis; /* はみ出た部分を「…」で省略する場合 */
+	border: 1px solid #000000;
+	min-width: 69px;
+}
+.th_overview{
+	border: 1px solid #000000;
+}
+
+
+footer{
+	background-color: #99FF99;
+	text-align: center;
+	font-size: large;
+	height: 80px;
+    line-height: 80px;
+}
+.button_cs{
+	height: 40px;
+	width: 120px;
+	font-size: large;
+	background-color:  aliceblue;
+	border-radius: 8px; /* 角丸を指定する */
+}
+.button_delete{
+	height: 40px;
+	width: 250px;
+	font-size: large;
+	background-color:  aliceblue;
+	border-radius: 8px; /* 角丸を指定する */
+}
+.button_createUser{
+	height: 40px;
+	width: 215px;
+	font-size: large;
+	background-color:  aliceblue;
+	border-radius: 8px; /* 角丸を指定する */
+}
+
+
+
+@media screen and (max-width: 959px) {
+	/* 959px以下に適用されるCSS（タブレット用） */
+}
+@media screen and (max-width: 480px) {
+	/* 480px以下に適用されるCSS（スマホ用） */
+}
 
 /*  参考  https://proengineer.internous.co.jp/content/columnfeature/6493 */
 input[type=checkbox] { display: none; /* チェックボックスを非表示にする */ }
@@ -104,15 +132,17 @@ input[type="checkbox"]:checked + label {
 
 .label {
 	margin: 3px; /* ラベル外側の余白を指定する */
-	border: 1px solid black;/* ラベルの境界線を実線で指定する */ 
+	border: 1px solid black;/* ラベルの境界線を実線で指定する */
 	background-color: beige;
 	display: block;
-	width: auto; /* ラベルの横幅を指定する */
-	height: auto; /* ラベルの高さを指定する */
-	padding-left: 5px; /* ラベル内左側の余白を指定する */
-	padding-right: 5px; /* ラベル内右側の余白を指定する */
+/*	width: auto;  ラベルの横幅を指定する */
+/*	height: auto;  ラベルの高さを指定する */
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 0px; /* ラベル内左側の余白を指定する */
+	padding-right: 0px; /* ラベル内右側の余白を指定する */
 	cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
 	color: black; /* フォントの色を指定 */
-	border-radius: 5px; /* 角丸を指定する */
+	border-radius: 8px; /* 角丸を指定する */
 }
 .label:hover { background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */ }

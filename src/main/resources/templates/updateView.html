@@ -4,54 +4,56 @@
 <meta charset="UTF-8">
 <title>更新</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
 </head>
 <body>
 	<header th:replace="~{header}"></header>
-	<main>
-		<div class="title_header_1">
-			<h1>
-				薬情報の更新画面
-			</h1>
-		</div>
-		<div  class="title_header_2">
-			アカウント名 : 
-			<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
-		</div>
-		<div>
-			<form action="/updateMedicine" method="post">
-				<p>薬の名前</p>
-				<input type="hidden" name="id" th:value="${medicine.id}">
-				<p>
-					<input type="text" name="name" th:value="${medicine.name}">
-				</p>
-				<p>服薬個数</p>
-				<p>
-					<input type="number" name="count" th:value="${medicine.count}">
-				</p>
-				<p>備考</p>
-				<p>
-					<textarea name="text" rows="5" cols="40" th:text="${medicine.text}"></textarea>
-				</p>
-				<button>更新する</button>
-			</form>
+	<div class="wrapper">
+		<main>
+			<div class="title_header_1">
+				<h1>
+					薬情報の更新画面
+				</h1>
+			</div>
+			<div  class="title_header_2">
+				アカウント名 : 
+				<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
+			</div>
+			<div>
+				<form action="/updateMedicine" method="post">
+					<p>薬の名前</p>
+					<input type="hidden" name="id" th:value="${medicine.id}">
+					<p>
+						<input type="text" name="name" th:value="${medicine.name}">
+					</p>
+					<p>服薬個数</p>
+					<p>
+						<input type="number" name="count" th:value="${medicine.count}">
+					</p>
+					<p>備考</p>
+					<p>
+						<textarea name="text" rows="5" cols="40" th:text="${medicine.text}"></textarea>
+					</p>
+					<button class="button_cs">更新する</button>
+				</form>
+				
+			</div>
 			
-		</div>
-		
-		<div>
-			<hr>
-			<form action="/deleteMedicine" name="delete" method = "post">
-				<input type="hidden" name="id" th:value="${medicine.id}">
-				または...<button>くすりを登録から削除する</button>
-			</form>
-			<span th:text="${messege}"></span>
-			<br><hr>
+			<div>
+				<hr>
+				<form action="/deleteMedicine" name="delete" method = "post">
+					<input type="hidden" name="id" th:value="${medicine.id}">
+					または...  <button class="button_delete">くすりを登録から削除する</button>
+				</form>
+				<span th:text="${messege}"></span>
+				<br><hr>
+				
+				<a href="/medicalView">ホームに戻る</a>
+			</div>
 			
-			<a href="/medicalView">ホームに戻る</a>
-		</div>
-		
-		
-	</main>
-	<footer th:replace="~{footer}"></footer>
+			
+		</main>
+		<footer th:replace="~{footer}"></footer>
+	</div>
 </body>
 </html>

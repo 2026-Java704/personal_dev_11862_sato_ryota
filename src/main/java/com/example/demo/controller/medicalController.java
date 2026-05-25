@@ -252,7 +252,8 @@ public class medicalController {
 	public String history(Model model) {
 		// 薬履歴テーブルを、ユーザーidでユーザーの薬履歴を全部取得して表示すれば、完成。
 		//ログインユーザーの薬履歴テーブル全部取得
-		List<Medicine_add_history> list = medicine_add_historyRepository.findByUsers_Id(account.getUserId());
+		//		List<Medicine_add_history> list = medicine_add_historyRepository.findByUsers_Id(account.getUserId());
+		List<Medicine_add_history> list = medicine_add_historyRepository.findByUsers_IdOrderByIdDesc(account.getUserId());
 		model.addAttribute("medicineHistory", list);
 
 		//履歴画面へ遷移

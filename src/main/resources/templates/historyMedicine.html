@@ -4,28 +4,29 @@
 <meta charset="UTF-8">
 <title>服薬履歴</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
 </head>
 <body>
 	<header th:replace="~{header}"></header>
-	<main>
-		<h1>服薬履歴</h1>
-		
-		<span  th:each="history : ${medicineHistory}">
-			<span th:text="${history.id}"></span>
-			<br>
-			<span th:text="${history.historyDate}"></span>
-			<br>
-			<span th:text="${history.text}"></span>
-			<br>
-<!--			<span th:text="${history.users.user_id}"></span>-->
-			<br>
-		</span>
-		
-		
-		<br><hr>
-		<a href="/medicalView">ホームに戻る</a>
-	</main>
-	<footer th:replace="~{footer}"></footer>
+	<div class="wrapper">
+		<main>
+			<h1>服薬履歴</h1>
+					<table border="1">
+						<tr>
+							<th>年日</th>
+							<th>服薬履歴</th>
+						</tr>
+						<span  th:each="history : ${medicineHistory}">
+							<tr>
+								<td th:text="${history.historyDate}"></td>
+								<td th:text="${history.text}"></td>
+							</tr>
+						</span>
+					</table>
+			<br><hr>
+			<a href="/medicalView">ホームに戻る</a>
+		</main>
+		<footer th:replace="~{footer}"></footer>
+	</div>
 </body>
 </html>
