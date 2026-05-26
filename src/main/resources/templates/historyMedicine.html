@@ -10,8 +10,9 @@
 	<header th:replace="~{header}"></header>
 	<div class="wrapper">
 		<main>
-			<h1>服薬履歴</h1>
-					<table border="1">
+			<div class="nav1">
+				<h1>服薬履歴</h1>
+					<table border="1" style="margin: 0 auto;">
 						<tr>
 							<th>年日</th>
 							<th>服薬履歴</th>
@@ -23,9 +24,10 @@
 							</tr>
 						</span>
 					</table>
-			<br><hr>
-			<a href="/medicalView">ホームに戻る</a>
-		</main>
+				<br><hr>
+				<a href="/medicalView">ホームに戻る</a>
+			</div>
+			</main>
 		<footer th:replace="~{footer}"></footer>
 	</div>
 </body>

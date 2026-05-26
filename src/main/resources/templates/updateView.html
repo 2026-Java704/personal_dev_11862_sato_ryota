@@ -5,6 +5,7 @@
 <title>更新</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+<script src="script.js"></script>
 </head>
 <body>
 	<header th:replace="~{header}"></header>
@@ -41,7 +42,7 @@
 			
 			<div>
 				<hr>
-				<form action="/deleteMedicine" name="delete" method = "post">
+				<form action="/deleteMedicine" name="delete" method = "post" onsubmit="return confirm('服用薬の登録情報を削除してもよろしいですか？');">
 					<input type="hidden" name="id" th:value="${medicine.id}">
 					または...  <button class="button_delete">くすりを登録から削除する</button>
 				</form>

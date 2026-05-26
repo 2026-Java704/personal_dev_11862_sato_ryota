@@ -93,15 +93,15 @@ footer{
 }
 .button_cs{
 	height: 40px;
-	width: 120px;
-	font-size: large;
+	width: 80px;
+/*	font-size: large;*/
 	background-color:  aliceblue;
 	border-radius: 8px; /* 角丸を指定する */
 }
 .button_delete{
 	height: 40px;
 	width: 250px;
-	font-size: large;
+/*	font-size: large;*/
 	background-color:  aliceblue;
 	border-radius: 8px; /* 角丸を指定する */
 }
@@ -112,8 +112,12 @@ footer{
 	background-color:  aliceblue;
 	border-radius: 8px; /* 角丸を指定する */
 }
-
-
+.container_login{
+	text-align: center;
+}
+.nav1{
+	text-align: center;
+}
 
 @media screen and (max-width: 959px) {
 	/* 959px以下に適用されるCSS（タブレット用） */

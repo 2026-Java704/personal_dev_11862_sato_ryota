@@ -10,31 +10,31 @@
 </head>
 <body>
 	<header style="margin: 0 0 0 0; padding: 0 0 0 0; font-size: 2.2vw; white-space: nowrap; padding: 0 0 0 45%;">
-		お薬チェッくん
+		お薬チェックくん
 	</header>
 		<div class="wrapper">
 			<main>
-				<div class="">
+				<div class="container_login">
 					<form action="/loginCheck" method="post">
-						<p  class="">
+						<p  style="font-size: x-large; padding-top: 20px; padding-bottom: 40px;">
 							ログイン画面
 						</p>
 						<p>
-						<div class="">
-							ユーザー名 : <input type="text" name="name">
-						</div>
-						<br>
-						<div class="">
-							パスワード : <input type="password" name="password">
-						</div>
+							<div class="">
+								ユーザー名 : <input type="text" name="name">
+							</div>
+							<br>
+							<div class="">
+								パスワード : <input type="password" name="password">
+							</div>
+							<br>
+							<button class="button_cs">ログイン</button>
+							<!--   繰り返しエラーリストを出力する。  -->
+							<div th:replace="~{error}"></div>
+						</p>
+					</form>
 					<br>
-					<button class="button_cs">ログイン</button>
-					<!--   繰り返しエラーリストを出力する。  -->
-					<div th:replace="~{error}"></div>
-					</p>
-				</form>
-				<br>
-				<br>
+					<br>
 				</div>
 			<hr>
 			<form action="/createUser" method="get" style="text-align: center;">

@@ -184,7 +184,12 @@ public class medicalController {
 			Model model) {
 		// 削除
 		medicineRepository.deleteById(id);
-		model.addAttribute("deleteMessege", "削除しました。");
+		model.addAttribute("updateMessege", "削除しました。");
+
+		// ホーム画面に一覧表示
+		Users user = userRepository.findById(account.getUserId()).get();
+		model.addAttribute("medicineList", getMedicinesItem(user.getId()));
+
 		// ホーム画面に戻る   get
 		return "medicalView";
 	}
@@ -215,7 +220,7 @@ public class medicalController {
 		Medicine medicine = new Medicine(id, name, text, count, new Date(1999, 10, 10), user);
 		// update
 		medicineRepository.save(medicine);
-		model.addAttribute("deleteMessege", "更新しました。");
+		model.addAttribute("updateMessege", "更新しました。");
 
 		// ユーザの服用薬一覧をタイムリーフに渡す
 		model.addAttribute("medicineList", getMedicinesItem(user.getId()));
@@ -253,7 +258,8 @@ public class medicalController {
 		// 薬履歴テーブルを、ユーザーidでユーザーの薬履歴を全部取得して表示すれば、完成。
 		//ログインユーザーの薬履歴テーブル全部取得
 		//		List<Medicine_add_history> list = medicine_add_historyRepository.findByUsers_Id(account.getUserId());
-		List<Medicine_add_history> list = medicine_add_historyRepository.findByUsers_IdOrderByIdDesc(account.getUserId());
+		List<Medicine_add_history> list = medicine_add_historyRepository
+				.findByUsers_IdOrderByIdDesc(account.getUserId());
 		model.addAttribute("medicineHistory", list);
 
 		//履歴画面へ遷移
