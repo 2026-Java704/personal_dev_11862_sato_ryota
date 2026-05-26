@@ -10,7 +10,7 @@
 <body>
 	<header th:replace="~{header}"></header>
 	<div class="wrapper">
-		<main>
+		<main style="text-align: center;">
 			<div class="title_header_1">
 				<h1>
 					薬情報の更新画面
@@ -20,32 +20,37 @@
 				アカウント名 : 
 				<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
 			</div>
+			<br>
 			<div>
 				<form action="/updateMedicine" method="post">
 					<p>薬の名前</p>
-					<input type="hidden" name="id" th:value="${medicine.id}">
+					<input type="hidden"  class="textbox-2" name="id" th:value="${medicine.id}">
 					<p>
-						<input type="text" name="name" th:value="${medicine.name}">
+						<input type="text" name="name"  class="textbox-2" th:value="${medicine.name}">
 					</p>
+					<br>
 					<p>服薬個数</p>
 					<p>
-						<input type="number" name="count" th:value="${medicine.count}">
+						<input type="number" name="count"  class="textbox-2" th:value="${medicine.count}">
 					</p>
+					<br>
 					<p>薬の在庫</p>
 					<p>
-						<input type="number" name="count" th:value="${medicine.remainingMedicineNumber}">
+						<input type="number" name="count"  class="textbox-2" th:value="${medicine.remainingMedicineNumber}">
 					</p>
+					<br>
 					<p>備考</p>
 					<p>
-						<textarea name="text" rows="5" cols="40" th:text="${medicine.text}"></textarea>
+						<textarea name="text" rows="5" cols="40"  class="textbox-2" th:text="${medicine.text}"></textarea>
 					</p>
+					<br>
 					<button class="button_cs">更新する</button>
 				</form>
-				
+				<br>
 			</div>
-			
 			<div>
 				<hr>
+				<br>
 				<form action="/deleteMedicine" name="delete" method = "post" onsubmit="return confirm('服用薬の登録情報を削除してもよろしいですか？');">
 					<input type="hidden" name="id" th:value="${medicine.id}">
 					または...  <button class="button_delete">くすりを登録から削除する</button>

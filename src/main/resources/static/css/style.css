@@ -39,7 +39,7 @@ main {
 }
 .home_title{
 	margin: 0 0 0 0;
-	padding: 0 0 0 50%;
+	padding: 0 50% 0 50%;
 	font-size: 1.8vw;
 	white-space: nowrap;
 	
@@ -49,9 +49,13 @@ main {
 	margin-right: 0;
 	white-space: nowrap;
 }
+p{
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
 
 .table_view{
-	background-color: #EEEEEE;
+	background-color: white;
 	width: 100%; /* 親要素（画面）に対して100%の幅にする */
 	table-layout: fixed; /* セル幅を均等、または指定した割合で固定する */
 	text-overflow: ellipsis; /* はみ出た部分を「…」で省略する場合 */
@@ -70,19 +74,51 @@ th, td {
 	width: 15%;
 	height: 50px;
 	white-space: nowrap;
-	border: 1px solid #000000;
+	border: 1px solid green;
 }
 .th_check{
 	width: 8%;
 	white-space: nowrap;
 	text-overflow: ellipsis; /* はみ出た部分を「…」で省略する場合 */
-	border: 1px solid #000000;
+	border: 1px solid green;
 	min-width: 69px;
 }
 .th_overview{
-	border: 1px solid #000000;
+	border: 1px solid green;
 }
 
+
+
+
+
+table{
+  border-collapse:collapse;
+  margin:0 auto;
+}
+td,th{
+  padding:10px;
+}
+th{
+  color: black;
+/*  background: deeppink;*/
+}
+table tr:nth-child(odd){
+  background: #CCFF99;
+}
+a {
+  text-decoration: none;
+  color: #333;
+  padding: 0 10px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(233, 203, 146) 50%);
+    background-position: 0 0;
+    background-size: 200% auto;
+    transition: .3s;
+}
+a:hover {
+  text-decoration: underline; /* マウスを乗せると下線が表示される */
+  background-position: -100% 0;
+  color: #fff;
+}
 
 footer{
 	background-color: #99FF99;
@@ -116,6 +152,31 @@ footer{
 	text-align: center;
 }
 .nav1{
+	text-align: center;
+}
+.textbox-2-label,
+.textbox-2 {
+    color: #333;
+}
+
+.textbox-2-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: .9em;
+}
+
+.textbox-2 {
+    
+    padding: 8px 10px;
+    border: 1px solid #d2d2d2;
+    border-radius: 25px;
+    background: #ccf5e2;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.textbox-2::placeholder {
+    color: #999;
 	text-align: center;
 }
 

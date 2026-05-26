@@ -185,8 +185,6 @@ public class medicalController {
 		medicineRepository.deleteById(id);
 		model.addAttribute("updateMessege", "削除しました。");
 
-		// koko
-
 		// ホーム画面に一覧表示
 		Users user = userRepository.findById(account.getUserId()).get();
 		model.addAttribute("medicineList", getMedicinesItem(user.getId()));

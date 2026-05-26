@@ -17,27 +17,34 @@
 				ユーザーアカウント : 
 				<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
 				<form action="/insertMedicine" method="post">
+					<br>
 					<p>薬の名前</p>
 					<p>
-						<input type="text" name="name">
+						<input type="text"  class="textbox-2" name="name">
 					</p>
+					<br>
 					<p>一度に服薬する個数を入力</p>
 					<p>
-						<input type="number" name="count" value="1">
+						<input type="number"  class="textbox-2" name="count" value="1">
 					</p>
+					<br>
 					<p>薬の在庫を入力</p>
 					<p>
-						<input type="number" name="remaningCountNumber" value="1">
+						<input type="number"  class="textbox-2" name="remaningCountNumber" value="1">
 					</p>
+					<br>
 					<p>備考欄</p>
 					<p>
-						<textarea name="text" rows="5" cols="40" placeholder="薬の説明や注意点を記入"></textarea>
+						<textarea name="text"  class="textbox-2" rows="5" cols="40" placeholder="薬の説明や注意点を記入"></textarea>
 					</p>
+					<br>
 					<button class="button_cs">登録</button>
 				</form>
+				<br>
 				<span th:text="${messege}"></span>
 				<a href="/medicalView">ホームに戻る</a>
 			</div>
+			<br>
 		</main>
 			<footer th:replace="~{footer}"></footer>
 	</div>
