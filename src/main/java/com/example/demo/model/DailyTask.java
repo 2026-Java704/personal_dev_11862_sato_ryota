@@ -31,8 +31,8 @@ public class DailyTask {
 	}
 
 	// cron式で「毎日0時0分0秒」を指定
-	//	@Scheduled(cron = "0 0 * * * ?", zone = "Asia/Tokyo")
-	@Scheduled(cron = "0 55 23 * * ?", zone = "Asia/Tokyo")
+	//	@Scheduled(cron = "0 55 23 * * ?", zone = "Asia/Tokyo")
+	@Scheduled(cron = "0 48 * * * ?", zone = "Asia/Tokyo")
 	public void executeAtMidnight() {
 		// 24時に実行される
 		//履歴を保存する処理を記述したい。
@@ -54,9 +54,11 @@ public class DailyTask {
 
 				//服薬済なら   日時+服薬記録+薬名前を記録
 				if (m.isCheck()) {
-					textStr = formattedDate + " : " + m.getName() + " : 服薬済";
+					textStr = m.getName() + " : 服薬済";
+					// 残薬を更新
+					m.UpdateCounter();
 				} else { // してなければ
-					textStr = formattedDate + " : " + m.getName() + " : 未服薬";
+					textStr = m.getName() + " : 未服薬";
 				}
 				Medicine_add_history history = new Medicine_add_history();
 				history.setAll(
@@ -70,8 +72,6 @@ public class DailyTask {
 				m.setCheck(false);
 				medicineRepository.save(m);
 			}
-			//記録後は、薬履歴テーブルを取得して表示するのみ
 		}
-
 	}
 }

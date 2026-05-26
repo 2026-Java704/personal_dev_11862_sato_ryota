@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
@@ -163,12 +162,12 @@ public class medicalController {
 			@RequestParam(defaultValue = "") String name,
 			@RequestParam(defaultValue = "") Integer count,
 			@RequestParam(defaultValue = "") String text,
+			@RequestParam(defaultValue = "") Integer remaningCountNumber,
 			Model model) {
 		// 登録処理
 		Users loginUser = userRepository.findById(account.getUserId()).get();
 		//
-		Medicine insertMedicine = new Medicine(name, text, count, false, false, false, false, new Date(1999, 10, 10),
-				loginUser);
+		Medicine insertMedicine = new Medicine(name, text, count, false, remaningCountNumber, loginUser);
 		insertMedicine = medicineRepository.save(insertMedicine);
 
 		model.addAttribute("insertMedicine", insertMedicine);
@@ -185,6 +184,8 @@ public class medicalController {
 		// 削除
 		medicineRepository.deleteById(id);
 		model.addAttribute("updateMessege", "削除しました。");
+
+		// koko
 
 		// ホーム画面に一覧表示
 		Users user = userRepository.findById(account.getUserId()).get();
@@ -211,13 +212,14 @@ public class medicalController {
 	public String updateMedicine(
 			@RequestParam(defaultValue = "") Integer id, //薬テーブルの個別id
 			@RequestParam(defaultValue = "") String name,
-			@RequestParam(defaultValue = "") Integer count, // usersのid。外部キー。
+			@RequestParam(defaultValue = "") Integer count,
+			@RequestParam(defaultValue = "") Integer remainingMedicineNumber,
 			@RequestParam(defaultValue = "") String text,
 			Model model) {
 		// 既存データ取得 user
 		Users user = userRepository.findById(account.getUserId()).get();
 		// 変更後データ代入
-		Medicine medicine = new Medicine(id, name, text, count, new Date(1999, 10, 10), user);
+		Medicine medicine = new Medicine(id, name, text, count, remainingMedicineNumber, user);
 		// update
 		medicineRepository.save(medicine);
 		model.addAttribute("updateMessege", "更新しました。");
@@ -244,8 +246,6 @@ public class medicalController {
 
 		// update DBのboolean
 		medicineRepository.save(medicine);
-
-		// 履歴機能で追加処理記述を考えてる部分。
 
 		// ユーザの服用薬一覧をタイムリーフに渡す
 		//		Users user = userRepository.findById(account.getUserId()).get();
@@ -282,8 +282,6 @@ public class medicalController {
 			}
 			i++;
 		}
-		// ソートの処理を記述したい
-
 		return medicineList2;
 	}
 }

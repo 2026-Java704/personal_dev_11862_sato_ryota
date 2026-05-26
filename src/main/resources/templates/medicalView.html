@@ -26,6 +26,7 @@
 				<tr>
 					<th class="th_tag table_title">薬の名前</th>
 					<th class="th_tag table_title">個数</th>
+					<th class="th_tag table_title">残り在庫</th>
 					<th class="th_check table_title">チェック</th>
 					<th class="th_tag table_title">編集</th>
 					<th class="th_overview table_title">備考</th>
@@ -33,6 +34,7 @@
 				<tr  th:each="medicine : ${medicineList}">
 					<td  class="th_tag" th:text="${medicine.name}"></td>
 					<td  class="th_tag" th:text="${medicine.count}"></td>
+					<td  class="th_tag" th:text="${medicine.remainingMedicineNumber}"></td>
 					<td  class="th_tag">
 						<form action="/check" id="autoForm" method="post">
 							<input type="hidden" name="id" th:value="${medicine.id}">
@@ -55,11 +57,13 @@
 					<td></td>
 					<td></td>
 					<td></td>
+					<td></td>
 					<td>
 						<a href="/insertMedicineView">くすり新規登録</a>
 					</td>
 				</tr>
 				<tr>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>

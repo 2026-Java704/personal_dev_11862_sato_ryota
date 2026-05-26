@@ -31,6 +31,10 @@
 					<p>
 						<input type="number" name="count" th:value="${medicine.count}">
 					</p>
+					<p>薬の在庫</p>
+					<p>
+						<input type="number" name="count" th:value="${medicine.remainingMedicineNumber}">
+					</p>
 					<p>備考</p>
 					<p>
 						<textarea name="text" rows="5" cols="40" th:text="${medicine.text}"></textarea>

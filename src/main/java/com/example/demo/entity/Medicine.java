@@ -1,7 +1,5 @@
 package com.example.demo.entity;
 
-import java.util.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,17 +26,9 @@ public class Medicine {
 	@Column(name = "medicine_check")
 	private boolean check;
 
-	@Column(name = "morning_check")
-	private boolean morningCheck;
-
-	@Column(name = "daytime_check")
-	private boolean daytimeCheck;
-
-	@Column(name = "night_check")
-	private boolean nightCheck;
-
-	@Column(name = "lastdate")
-	private Date lastDate;
+	// 残薬数
+	@Column(name = "remaining_medicine_number")
+	private Integer remainingMedicineNumber;
 
 	// ★ 外部キーの設定   多側のエンティティの記述 users表の主キー(id)を参照するには、「users_id」で正解。
 	@ManyToOne
@@ -48,54 +38,36 @@ public class Medicine {
 	public Medicine() {
 	}
 
-	public Medicine(Integer id, String name, String text, Integer count, boolean check, boolean morningCheck,
-			boolean daytimeCheck, boolean nightCheck, Date lastDate, Users users) {
+	public Medicine(Integer id, String name, String text, Integer count, boolean check, Integer remainingMedicineNumber,
+			Users users) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.text = text;
 		this.count = count;
 		this.check = check;
-		this.morningCheck = morningCheck;
-		this.daytimeCheck = daytimeCheck;
-		this.nightCheck = nightCheck;
-		this.lastDate = lastDate;
+		this.remainingMedicineNumber = remainingMedicineNumber;
 		this.users = users;
 	}
 
-	public Medicine(Integer id, boolean check, Users users) {
-		this.id = id;
-		this.check = check;
-		this.users = users;
-	}
-
-	public Medicine(String name, String text, Integer count, boolean check, boolean morningCheck,
-			boolean daytimeCheck, boolean nightCheck, Date lastDate, Users users) {
-		this.name = name;
-		this.text = text;
-		this.count = count;
-		this.check = check;
-		this.morningCheck = morningCheck;
-		this.daytimeCheck = daytimeCheck;
-		this.nightCheck = nightCheck;
-		this.lastDate = lastDate;
-		this.users = users;
-	}
-
-	public Medicine(String name, String text, Integer count, Date lastDate, Users users) {
-		this.name = name;
-		this.text = text;
-		this.count = count;
-		this.lastDate = lastDate;
-		this.users = users;
-	}
-
-	public Medicine(Integer id, String name, String text, Integer count, Date lastDate, Users users) {
+	public Medicine(Integer id, String name, String text, Integer count, Integer remainingMedicineNumber, Users users) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.text = text;
 		this.count = count;
-		this.lastDate = lastDate;
+		this.remainingMedicineNumber = remainingMedicineNumber;
+		this.users = users;
+	}
+
+	public Medicine(String name, String text, Integer count, boolean check, Integer remainingMedicineNumber,
+			Users users) {
+		super();
+		this.name = name;
+		this.text = text;
+		this.count = count;
+		this.check = check;
+		this.remainingMedicineNumber = remainingMedicineNumber;
 		this.users = users;
 	}
 
@@ -139,36 +111,17 @@ public class Medicine {
 		this.check = check;
 	}
 
-	public boolean isMorningCheck() {
-		return morningCheck;
+	public Integer getRemainingMedicineNumber() {
+		return remainingMedicineNumber;
 	}
 
-	public void setMorningCheck(boolean morningCheck) {
-		this.morningCheck = morningCheck;
+	public void setRemainingMedicineNumber(Integer remainingMedicineNumber) {
+		this.remainingMedicineNumber = remainingMedicineNumber;
 	}
 
-	public boolean isDaytimeCheck() {
-		return daytimeCheck;
-	}
-
-	public void setDaytimeCheck(boolean daytimeCheck) {
-		this.daytimeCheck = daytimeCheck;
-	}
-
-	public boolean isNightCheck() {
-		return nightCheck;
-	}
-
-	public void setNightCheck(boolean nightCheck) {
-		this.nightCheck = nightCheck;
-	}
-
-	public Date getLastDate() {
-		return lastDate;
-	}
-
-	public void setLastDate(Date lastDate) {
-		this.lastDate = lastDate;
+	// 残薬を更新するメソッド
+	public void UpdateCounter() {
+		this.remainingMedicineNumber = this.remainingMedicineNumber - this.count;
 	}
 
 	public Users getUsers() {

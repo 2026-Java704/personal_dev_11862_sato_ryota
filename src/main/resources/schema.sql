@@ -37,10 +37,7 @@ CREATE TABLE medicine (
 	text VARCHAR(500),
 	count INTEGER,
 	medicine_check boolean NOT NULL DEFAULT FALSE,
-	morning_check boolean NOT NULL DEFAULT FALSE,
-	daytime_check boolean NOT NULL DEFAULT FALSE,
-	night_check boolean NOT NULL DEFAULT FALSE,
-	lastDate DATE,
+	remaining_medicine_number INTEGER DEFAULT 0,	
 	user_id INTEGER REFERENCES users(id)
 );
 
