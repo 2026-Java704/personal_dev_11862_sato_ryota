@@ -55,6 +55,23 @@ public class medicalController {
 		return "medicalLogin";
 	}
 
+	@GetMapping("/userProfile") // GETリクエスト
+	public String userProfile() {
+		// ユーザープロフィール機能の実装。退会機能のみ。
+		return "userProfile";
+	}
+
+	@GetMapping("/deleteUser") // GETリクエスト
+	public String deleteUser(Model model) {
+		// ユーザー削除。削除する順番は、履歴テーブル>薬テーブル>ユーザーテーブル
+		medicine_add_historyRepository.deleteByUsers_Id(account.getUserId());
+		medicineRepository.deleteByUsers_Id(account.getUserId());
+		userRepository.deleteById(account.getUserId()); //1件
+		// 退会機能の実装。ログアウト。
+		model.addAttribute("message", "アカウントを削除しました。");
+		return "medicalLogin";
+	}
+
 	@GetMapping("/createUser") // GETリクエスト
 	public String createUser() {
 		return "createUser";
@@ -95,7 +112,7 @@ public class medicalController {
 			errorList.add("パスワードを入力してください");
 		}
 		//名前重複登録禁止エラー
-		if (name.equals(userRepository.findByName(name).getName())) {
+		if (userRepository.existsByName(name)) {
 			errorList.add("名前が重複してるので登録できません");
 		}
 		if (errorList.size() > 0) {
@@ -152,7 +169,8 @@ public class medicalController {
 			model.addAttribute("medicineList", getMedicinesItem(user.getId()));
 			return "medicalView";
 		}
-		// ログインできてないときは初期画面にとりあえずもっていく
+		// 空文字がなくて、ログインもできてない場合の処理
+		model.addAttribute("message", "アカウントがありません");
 		return "medicalLogin";
 	}
 

@@ -122,6 +122,9 @@ public class Medicine {
 	// 残薬を更新するメソッド
 	public void UpdateCounter() {
 		this.remainingMedicineNumber = this.remainingMedicineNumber - this.count;
+		if (this.remainingMedicineNumber < 0) {
+			this.remainingMedicineNumber = 0;
+		}
 	}
 
 	public Users getUsers() {

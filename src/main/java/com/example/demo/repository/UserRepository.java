@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 
 	//	String findByEmail(String email);
 
-	//	boolean existsByEmail(String email);
+	boolean existsByName(String name);
 
 	//	boolean existsByPassword(String password);
 
@@ -21,7 +21,7 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 	// 
 	Users findByNameAndPassword(String name, String password);
 
-	Users findByName(String name);
+	//	Users findByName(String name);
 
 	// 呼び出すだけで昇順（id順）に取得されるメソッド
 	List<Users> findByOrderByIdAsc();

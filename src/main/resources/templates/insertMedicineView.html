@@ -16,6 +16,9 @@
 				</h1>
 				ユーザーアカウント : 
 				<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
+				<a href="/userProfile">
+					<img th:src="@{/images/images.png}" alt="画像">
+				</a>
 				<form action="/insertMedicine" method="post">
 					<br>
 					<p>薬の名前</p>

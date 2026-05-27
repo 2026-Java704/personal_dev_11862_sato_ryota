@@ -32,7 +32,7 @@ public class DailyTask {
 
 	// cron式で「毎日0時0分0秒」を指定
 	//	@Scheduled(cron = "0 55 23 * * ?", zone = "Asia/Tokyo")
-	@Scheduled(cron = "0 48 * * * ?", zone = "Asia/Tokyo")
+	@Scheduled(cron = "0 55 23 * * ?", zone = "Asia/Tokyo")
 	public void executeAtMidnight() {
 		// 24時に実行される
 		//履歴を保存する処理を記述したい。

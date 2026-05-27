@@ -8,9 +8,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
 </head>
 <body>
-	<header th:replace="~{header}"></header>
+	<header>
+		<span class="header_title">お薬チェックくん</span>
+	</header>
 	<div class="wrapper">
-		<main>
+		<main style="text-align: center;">
 			<div>
 				<h1>
 					新規登録画面
@@ -18,13 +20,20 @@
 			</div>
 			<div>
 				<form action="/medicalView" method="post">
-					<input type="text" name="name">
+					ユーザー名 : <input type="text" name="name" class="textbox-2">
 					<br>
-					<input type="password" name="password">
+					<br>
+					パスワード : <input type="password" name="password" class="textbox-2">
+					<br>
+					<br>
 					<button  class="button_createUser">
 						ユーザーを登録する
 					</button>
 				</form>
+				<br>
+				<br>
+				<hr>
+				<br>
 				<a href="/">ログイン画面に戻る</a>
 			</div>
 			<!--   繰り返しエラーリストを出力する。  -->

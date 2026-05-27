@@ -33,8 +33,10 @@
 							</div>
 							<br>
 							<button class="button_cs">ログイン</button>
+							<br>
 							<!--   繰り返しエラーリストを出力する。  -->
-							<div th:replace="~{error}"></div>
+							<div th:replace="~{error}"><br></div>
+							<div th:text="${message}"><br></div>
 						</p>
 					</form>
 					<br>

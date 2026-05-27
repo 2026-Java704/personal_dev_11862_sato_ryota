@@ -12,6 +12,13 @@
 		<main>
 			<div class="nav1">
 				<h1>服薬履歴</h1>
+					ユーザーアカウント : 
+					<span name="name" th:value="${@account.userName}" th:text="${@account.userName}"></span>
+					<a href="/userProfile">
+						<img th:src="@{/images/images.png}" alt="画像">
+					</a>
+					<br>
+					<br>
 					<table border="1" style="margin: 0 auto;">
 						<tr>
 							<th>年日</th>

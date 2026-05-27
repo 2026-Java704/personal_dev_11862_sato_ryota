@@ -2,6 +2,8 @@ package com.example.demo.repository;
 
 import java.util.List;
 
+import jakarta.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entity.Medicine;
@@ -19,4 +21,8 @@ public interface MedicineRepository extends JpaRepository<Medicine, Integer> {
 
 	// MedicineのUser_id外部キーで条件検索一括取得
 	List<Medicine> findByUsers_Id(Integer user_id);
+
+	// delete
+	@Transactional
+	void deleteByUsers_Id(Integer user_id);
 }

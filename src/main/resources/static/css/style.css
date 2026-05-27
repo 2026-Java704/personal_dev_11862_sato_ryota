@@ -105,11 +105,15 @@ th{
 table tr:nth-child(odd){
   background: #CCFF99;
 }
+img{
+	height: 25px;
+	width: 25px;
+}
 a {
   text-decoration: none;
   color: #333;
   padding: 0 10px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(233, 203, 146) 50%);
+/*    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(233, 203, 146) 50%);*/
     background-position: 0 0;
     background-size: 200% auto;
     transition: .3s;
@@ -117,7 +121,7 @@ a {
 a:hover {
   text-decoration: underline; /* マウスを乗せると下線が表示される */
   background-position: -100% 0;
-  color: #fff;
+  color: blueviolet;
 }
 
 footer{

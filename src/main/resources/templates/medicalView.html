@@ -15,7 +15,10 @@
 				<p>
 					<a class="home_title" href="/medicalView">服薬一覧</a>
 					<br>
-					<span class="account_title" name="name" th:value="${@account.userName}" th:text="|ログインユーザー : ${@account.userName}|"></span>
+					<span class="account_title" name="name" th:value="${@account.userName}" th:text="|ログインユーザー : ${@account.userName} |"></span>
+					<a href="/userProfile">
+						<img th:src="@{/images/images.png}" alt="画像">
+					</a>
 					<br>
 					<!--	薬の服用履歴を確認できる画面を作成する-->
 					<input type="hidden" name="id" th:value="${@account.userName}">
